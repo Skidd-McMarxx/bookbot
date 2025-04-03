@@ -1,3 +1,5 @@
+import sys
+
 from stats import get_word_count, get_char_count, sort_char_count
 
 
@@ -17,9 +19,12 @@ def print_report(book_path:str, s:str):
         char, num = character["char"], character["num"]
         if not char.isalpha():
             continue
-        print(f"The '{char}' character was found {num} times")
+        print(f"{char}: {num}")
     print("--- End report ---")
 
 
 if __name__ == "__main__":
-    bookreport("books/frankenstein.txt")
+    if len(sys.argv) != 2:
+        print("Usage: python3 main.py <path_to_book>")
+        sys.exit(1)
+    bookreport(sys.argv[1])
